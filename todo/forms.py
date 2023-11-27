@@ -27,6 +27,7 @@ class TaskForm(forms.ModelForm):
 
         return deadline
 
+
 class TagForm(forms.ModelForm):
     class Meta:
         model = Tag

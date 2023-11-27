@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import Task
+from .models import Task, Tag
 
 
 class TaskListView(generic.ListView):
@@ -16,3 +16,8 @@ class TaskDetailView(generic.DetailView):
 
     def get_queryset(self):
         return Task.objects.prefetch_related("tags")
+
+
+class TagListView(generic.ListView):
+    model = Tag
+    paginate_by = 10

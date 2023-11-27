@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-8">
+        <h1>Tags</h1>
+      </div>
+      <div class="col-md-4 text-right">
+        <a class="btn btn-primary" href="{% url 'todo:tag-create' %}">Add Tag</a>
+      </div>
+    </div>
+    <hr>
+
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Update</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tag in tag_list %}
+          <tr>
+            <td>
+              <a href="{% url 'todo:tag-detail' pk=tag.id %}">{{ tag.name }}</a>
+            </td>
+            <td>
+              <a class="btn btn-info btn-sm" href="{% url 'todo:tag-update' pk=tag.id %}">Update</a>
+            </td>
+            <td>
+              <a class="btn btn-danger btn-sm" href="{% url 'todo:tag-delete' pk=tag.id %}">Delete</a>
+            </td>
+          </tr>
+          {% empty %}
+      <h1>There are to tasks yet!</h1>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+<nav class="col-md-2 d-none d-md-block bg-light sidebar" style="height: 100vh; padding-top: 100px">
+  <div class="sidebar-sticky text-center">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link active" href="{% url 'todo:index' %}">
+          <i class="fas fa-home mr-2"></i> Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'todo:tag-list' %}">
+          <i class="fas fa-tags mr-2"></i> All Tags
+        </a>
+      </li>
+      <br>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'todo:task-done' %}">
+          <i class="fas fa-tags mr-2"></i> Done Tasks
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'todo:task-undone' %}">
+          <i class="fas fa-tags mr-2"></i> Undone Tasks
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

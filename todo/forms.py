@@ -1,4 +1,6 @@
 from django import forms
+from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 from todo.models import Tag, Task
 
@@ -16,6 +18,14 @@ class TaskForm(forms.ModelForm):
             'deadline': forms.TextInput(attrs={'type': 'datetime-local'}),
         }
 
+    def clean_deadline(self):
+        deadline = self.cleaned_data.get('deadline')
+        now = timezone.now()
+
+        if deadline and deadline < now:
+            raise ValidationError('Deadline must be not less than current date')
+
+        return deadline
 
 class TagForm(forms.ModelForm):
     class Meta:

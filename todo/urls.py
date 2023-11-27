@@ -4,7 +4,7 @@ from todo.views import TaskListView, TaskDetailView
 
 urlpatterns = [
     path("", TaskListView.as_view(), name="index"),
-    path("/<int:pk>/", TaskDetailView.as_view(), name="task-detail")
+    path("<int:pk>/", TaskDetailView.as_view(), name="task-detail")
 ]
 
 app_name = "todo"

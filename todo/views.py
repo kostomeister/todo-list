@@ -60,14 +60,14 @@ def do_task_view(request: HttpRequest, pk: int) -> HttpResponse:
     task = get_object_or_404(Task, pk=pk)
     task.is_done = True
     task.save()
-    return redirect("/")
+    return redirect(request.META.get('HTTP_REFERER'))
 
 
 def undo_task_view(request: HttpRequest, pk: int) -> HttpResponse:
     task = get_object_or_404(Task, pk=pk)
     task.is_done = False
     task.save()
-    return redirect("/")
+    return redirect(request.META.get('HTTP_REFERER'))
 
 
 class TagListView(generic.ListView):

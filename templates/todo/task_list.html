@@ -5,6 +5,6 @@
   <h1>TODO list</h1>
   <br>
   {% for task in task_list %}
-    <h3>{{ task.content }}</h3>
+    <h3><a href="{% url todo:task-detail pk=task.id %}">{{ task.content }}</a></h3>
   {% endfor %}
 {% endblock %}

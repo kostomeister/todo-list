@@ -21,3 +21,7 @@ class TaskDetailView(generic.DetailView):
 class TagListView(generic.ListView):
     model = Tag
     paginate_by = 10
+
+
+class TagDetailView(generic.DetailView):
+    model = Tag

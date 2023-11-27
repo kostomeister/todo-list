@@ -15,3 +15,9 @@ class TaskForm(forms.ModelForm):
         widgets = {
             'deadline': forms.TextInput(attrs={'type': 'datetime-local'}),
         }
+
+
+class TagForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        fields = "__all__"

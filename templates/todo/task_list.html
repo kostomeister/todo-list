@@ -3,8 +3,10 @@
 
 {% block content %}
   <h1>TODO list</h1>
+  <a href="{% url 'todo:task-create' %}">+</a>
   <br>
   {% for task in task_list %}
-    <h3><a href="{% url todo:task-detail pk=task.id %}">{{ task.content }}</a></h3>
+    <h3><a href="{% url 'todo:task-detail' pk=task.id %}">{{ task.content }}</a></h3>
+    <a href="{% url 'todo:task-update' pk=task.id %}">update</a>
   {% endfor %}
 {% endblock %}

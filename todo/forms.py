@@ -15,15 +15,15 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = "__all__"
         widgets = {
-            'deadline': forms.TextInput(attrs={'type': 'datetime-local'}),
+            "deadline": forms.TextInput(attrs={"type": "datetime-local"}),
         }
 
     def clean_deadline(self):
-        deadline = self.cleaned_data.get('deadline')
+        deadline = self.cleaned_data.get("deadline")
         now = timezone.now()
 
         if deadline and deadline < now:
-            raise ValidationError('Deadline must be not less than current date')
+            raise ValidationError("Deadline must be not less than current date")
 
         return deadline
 

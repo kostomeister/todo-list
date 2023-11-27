@@ -28,6 +28,13 @@ class TaskCreateView(generic.CreateView):
     success_url = reverse_lazy("todo:index")
 
 
+class TaskUpdateView(generic.UpdateView):
+    model = Task
+    form_class = TaskForm
+    template_name = "todo/task_form.html"
+    success_url = reverse_lazy("todo:index")
+
+
 class TagListView(generic.ListView):
     model = Tag
     paginate_by = 10

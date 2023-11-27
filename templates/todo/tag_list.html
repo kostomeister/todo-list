@@ -12,18 +12,29 @@
     </div>
     <hr>
 
-    {% for tag in tag_list %}
-      <div class="card mb-3">
-        <div class="card-body">
-          <h3 class="card-title">
-            <a href="{% url 'todo:tag-detail' pk=tag.id %}">{{ tag.name }}</a>
-          </h3>
-          <div class="text-right">
-            <a class="btn btn-info btn-sm mr-2" href="{% url 'todo:tag-update' pk=tag.id %}">Update</a>
-            <a class="btn btn-danger btn-sm" href="{% url 'todo:tag-delete' pk=tag.id %}">Delete</a>
-          </div>
-        </div>
-      </div>
-    {% endfor %}
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Update</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tag in tag_list %}
+          <tr>
+            <td>
+              <a href="{% url 'todo:tag-detail' pk=tag.id %}">{{ tag.name }}</a>
+            </td>
+            <td>
+              <a class="btn btn-info btn-sm" href="{% url 'todo:tag-update' pk=tag.id %}">Update</a>
+            </td>
+            <td>
+              <a class="btn btn-danger btn-sm" href="{% url 'todo:tag-delete' pk=tag.id %}">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 {% endblock %}

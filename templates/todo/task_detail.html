@@ -1,6 +1,30 @@
 {% extends "base.html" %}
 
-
 {% block content %}
-{{ task.content }}
+  <div class="container mt-4">
+    <h1>Task Detail</h1>
+    <div class="mt-4">
+      <h5>{{ task.content }}</h5>
+      <p>
+        {% if task.is_done == True %}
+          <span class="text-success">Done</span>
+        {% else %}
+          <span class="task-danger">Not done</span>
+        {% endif %}
+        <br>
+        <strong>Deadline:</strong> {{ task.deadline }}
+        <br>
+        <strong>Created at:</strong> {{ task.created_at }}
+        <br>
+        <strong>Tags:</strong>
+        {% for tag in task.tags.all %}
+          <span class="badge badge-info"><a href="{% url 'todo:tag-detail' pk=tag.id %}">{{ tag.name }}</a></span>
+        {% endfor %}
+      </p>
+      <div class="btn-group" role="group" aria-label="Task Actions">
+        <a class="btn btn-primary" href="{% url 'todo:task-update' pk=task.id %}">Update</a>
+        <a class="btn btn-danger" href="{% url 'todo:task-delete' pk=task.id %}">Delete</a>
+      </div>
+    </div>
+  </div>
 {% endblock %}

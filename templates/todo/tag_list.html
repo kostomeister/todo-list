@@ -33,6 +33,8 @@
               <a class="btn btn-danger btn-sm" href="{% url 'todo:tag-delete' pk=tag.id %}">Delete</a>
             </td>
           </tr>
+          {% empty %}
+      <h1>There are to tasks yet!</h1>
         {% endfor %}
       </tbody>
     </table>

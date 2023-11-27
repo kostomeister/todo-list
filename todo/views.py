@@ -9,10 +9,25 @@ from .models import Task, Tag
 
 class TaskListView(generic.ListView):
     model = Task
-    paginate_by = 7
 
     def get_queryset(self):
         return Task.objects.prefetch_related("tags")
+
+
+class DoneTaskListView(generic.ListView):
+    model = Task
+    template_name = "todo/task_list.html"
+
+    def get_queryset(self):
+        return Task.objects.prefetch_related("tags").filter(is_done=True)
+
+
+class UnDoneTaskListView(generic.ListView):
+    model = Task
+    template_name = "todo/task_list.html"
+
+    def get_queryset(self):
+        return Task.objects.prefetch_related("tags").filter(is_done=False)
 
 
 class TaskDetailView(generic.DetailView):
@@ -57,7 +72,6 @@ def undo_task_view(request: HttpRequest, pk: int) -> HttpResponse:
 
 class TagListView(generic.ListView):
     model = Tag
-    paginate_by = 10
 
 
 class TagDetailView(generic.DetailView):

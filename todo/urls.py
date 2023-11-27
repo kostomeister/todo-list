@@ -1,10 +1,13 @@
 from django.urls import path
 
 from todo.views import TaskListView, TaskDetailView, TagListView, TagDetailView, TaskCreateView, TaskUpdateView, \
-    TagUpdateView, TagCreateView, TaskDeleteView, TagDeleteView, do_task_view, undo_task_view
+    TagUpdateView, TagCreateView, TaskDeleteView, TagDeleteView, do_task_view, undo_task_view, DoneTaskListView, \
+    UnDoneTaskListView
 
 urlpatterns = [
     path("", TaskListView.as_view(), name="index"),
+    path("done/", DoneTaskListView.as_view(), name="task-done"),
+    path("undone/", UnDoneTaskListView.as_view(), name="task-undone"),
     path("<int:pk>/", TaskDetailView.as_view(), name="task-detail"),
     path("<int:pk>/update/", TaskUpdateView.as_view(), name="task-update"),
     path("<int:pk>/delete/", TaskDeleteView.as_view(), name="task-delete"),

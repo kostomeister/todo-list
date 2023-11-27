@@ -1,12 +1,41 @@
-{% extends "base.html" %}
-
+{% extends 'base.html' %}
 
 {% block content %}
-  <h1>TODO list</h1>
-  <a href="{% url 'todo:task-create' %}">+</a>
-  <br>
-  {% for task in task_list %}
-    <h3><a href="{% url 'todo:task-detail' pk=task.id %}">{{ task.content }}</a></h3>
-    <a href="{% url 'todo:task-update' pk=task.id %}">update</a>
-  {% endfor %}
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="mb-0">TODO list:</h1>
+      <a class="btn btn-primary" href="{% url 'todo:task-create' %}">Add task</a>
+    </div>
+
+    <hr>
+
+    {% for task in task_list %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ task.content }}</h5>
+          <p class="card-text">
+            {% if task.is_done == False %}
+              <span class="text-danger">Not done</span>
+              <br>
+              <span>Deadline: {{ task.deadline }}</span>
+            {% else %}
+              <span class="text-success">Done</span>
+            {% endif %}
+            <br>
+            <span>Created at: {{ task.created_at }}</span>
+            <br>
+            <strong>Tags:</strong>
+            {% for tag in task.tags.all %}
+              <span class="badge badge-info"><a href="{% url 'todo:tag-detail' pk=tag.id %}">{{ tag.name }}</a></span>
+            {% endfor %}
+          </p>
+          <div class="btn-group" role="group" aria-label="Task Actions">
+            <a class="btn btn-primary btn-sm" href="{% url 'todo:task-update' pk=task.id %}">Update</a>
+            <a class="btn btn-danger btn-sm" href="{% url 'todo:task-delete' pk=task.id %}">Delete</a>
+          </div>
+        </div>
+      </div>
+      <hr>
+    {% endfor %}
+  </div>
 {% endblock %}

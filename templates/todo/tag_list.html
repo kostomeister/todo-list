@@ -3,6 +3,6 @@
 {% block content %}
   <h1>Tags</h1>
   {% for tag in tag_list %}
-    <h3>{{ tag.name }}</h3>
+    <h3><a href="{% url 'todo:tag-detail' pk=tag.id %}">{{ tag.name }}</a></h3>
   {% endfor %}
 {% endblock %}
